@@ -74,7 +74,9 @@ class _SignInState extends State<SignIn> {
           : Container(
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: Column(
-                children: [
+                children: [SizedBox(
+                    height: 16,
+                  ),
                   Image.asset('assets/images/aeroplane.png'),
                   Spacer(),
                   Form(
@@ -155,22 +157,22 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.white),
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      "Sign In with Google",
-                      style:
-                          TextStyle(fontSize: 17, color: CustomTheme.textColor),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+                  // SizedBox(
+                  //   height: 16,
+                  // ),
+                  // Container(
+                  //   padding: EdgeInsets.symmetric(vertical: 16),
+                  //   decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(30),
+                  //       color: Colors.white),
+                  //   width: MediaQuery.of(context).size.width,
+                  //   child: Text(
+                  //     "Sign In with Google",
+                  //     style:
+                  //         TextStyle(fontSize: 17, color: CustomTheme.textColor),
+                  //     textAlign: TextAlign.center,
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 16,
                   ),
