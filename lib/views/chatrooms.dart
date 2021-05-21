@@ -6,7 +6,10 @@ import 'package:chatapp/services/auth.dart';
 import 'package:chatapp/services/database.dart';
 import 'package:chatapp/views/chat.dart';
 import 'package:chatapp/views/search.dart';
+import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:line_awesome_icons/line_awesome_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ChatRoom extends StatefulWidget {
   @override
@@ -30,7 +33,8 @@ class _ChatRoomState extends State<ChatRoom> {
                         .toString()
                         .replaceAll("_", "")
                         .replaceAll(Constants.myName, ""),
-                    chatRoomId: snapshot.data.documents[index].data["chatRoomId"],
+                    chatRoomId:
+                        snapshot.data.documents[index].data["chatRoomId"],
                   );
                 })
             : Container();
@@ -59,10 +63,7 @@ class _ChatRoomState extends State<ChatRoom> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset(
-          "assets/images/logo.png",
-          height: 40,
-        ),
+        title: Text('Connect with us'),
         elevation: 0.0,
         centerTitle: false,
         actions: [
@@ -78,15 +79,35 @@ class _ChatRoomState extends State<ChatRoom> {
           )
         ],
       ),
-      body: Container(
-        child: chatRoomsList(),
+      body: Center(
+        child: Text(
+          'Welcome to Konnex',
+          style: TextStyle(color: Colors.white, fontSize: 25),
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.search),
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Search()));
-        },
+      floatingActionButton: FabCircularMenu(
+        fabMargin: EdgeInsets.all(10),
+        animationCurve: Curves.bounceInOut,
+        ringDiameter: 300,
+        children: <Widget>[
+          IconButton(
+              icon: Icon(Icons.message),
+              onPressed: () {
+                print('Message');
+              }),
+          IconButton(
+              icon: Icon(LineAwesomeIcons.bug),
+              onPressed: () {
+                print('Bug');
+              }),
+          IconButton(
+              icon: Icon(LineAwesomeIcons.support),
+              onPressed: () {
+                print('Support');
+                launch(
+                    'https://console.dialogflow.com/api-client/demo/embedded/bbe1aa06-c508-461a-9049-3a2676737215');
+              }),
+        ],
       ),
     );
   }
@@ -96,17 +117,18 @@ class ChatRoomsTile extends StatelessWidget {
   final String userName;
   final String chatRoomId;
 
-  ChatRoomsTile({this.userName,@required this.chatRoomId});
+  ChatRoomsTile({this.userName, @required this.chatRoomId});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => Chat(
-            chatRoomId: chatRoomId,
-          )
-        ));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Chat(
+                      chatRoomId: chatRoomId,
+                    )));
       },
       child: Container(
         color: Colors.black26,
