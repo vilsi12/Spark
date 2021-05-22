@@ -82,7 +82,7 @@ class _ChatRoomState extends State<ChatRoom> {
       body: Center(
         child: Text(
           'Welcome to Konnex',
-          style: TextStyle(color: Colors.white, fontSize: 25),
+          style: TextStyle(color: Colors.white, fontSize: 35),
         ),
       ),
       floatingActionButton: FabCircularMenu(
@@ -91,21 +91,24 @@ class _ChatRoomState extends State<ChatRoom> {
         ringDiameter: 300,
         children: <Widget>[
           IconButton(
-              icon: Icon(Icons.message),
+              icon: Icon(Icons.leaderboard),
               onPressed: () {
-                print('Message');
+                print('leaderboard');
+                launch('https://fe19c4fb0938.ngrok.io/leaderboard-app');
               }),
           IconButton(
               icon: Icon(LineAwesomeIcons.bug),
               onPressed: () {
                 print('Bug');
-              }),
-          IconButton(
-              icon: Icon(LineAwesomeIcons.support),
-              onPressed: () {
-                print('Support');
                 launch(
                     'https://console.dialogflow.com/api-client/demo/embedded/bbe1aa06-c508-461a-9049-3a2676737215');
+              }),
+          IconButton(
+              icon: Icon(Icons.message),
+              onPressed: () {
+                print('Message');
+                launch(
+                    'https://console.dialogflow.com/api-client/demo/embedded/edf22b0b-6a2c-41d3-82b8-a226cadd586b');
               }),
         ],
       ),
